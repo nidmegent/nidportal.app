@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NID PORTAL | Nidmegent</title>
+
+    <meta name="description" content="Nidmegent Internal Management Portal">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ========================================
+     SIDEBAR
+======================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            N
+        </div>
+
+        <div class="brand-text">
+            <strong>NID</strong>
+            <span>PORTAL</span>
+        </div>
+
+    </div>
+
+
+    <div class="profile-mini">
+
+        <div class="avatar">
+            H
+        </div>
+
+        <div>
+            <strong>湖夢はな</strong>
+            <span>STAFF / CREATIVE</span>
+        </div>
+
+    </div>
+
+
+    <nav class="navigation">
+
+        <div class="nav-label">
+            MAIN
+        </div>
+
+        <button class="nav-item active" data-page="home">
+            <span>⌂</span>
+            <span>HOME</span>
+        </button>
+
+        <button class="nav-item" data-page="notice">
+            <span>!</span>
+            <span>NOTICE</span>
+            <b class="nav-badge">2</b>
+        </button>
+
+        <button class="nav-item" data-page="task">
+            <span>✓</span>
+            <span>TASK</span>
+            <b class="nav-badge">3</b>
+        </button>
+
+        <button class="nav-item" data-page="event">
+            <span>◷</span>
+            <span>EVENT</span>
+        </button>
+
+
+        <div class="nav-label">
+            ORGANIZATION
+        </div>
+
+        <button class="nav-item" data-page="member">
+            <span>◎</span>
+            <span>MEMBER</span>
+        </button>
+
+        <button class="nav-item" data-page="wiki">
+            <span>▤</span>
+            <span>WIKI</span>
+        </button>
+
+
+        <div class="nav-label">
+            COMPETITIVE
+        </div>
+
+        <button class="nav-item" data-page="match">
+            <span>◈</span>
+            <span>MATCH</span>
+        </button>
+
+
+        <div class="nav-label">
+            SYSTEM
+        </div>
+
+        <button class="nav-item" data-page="settings">
+            <span>⚙</span>
+            <span>SETTINGS</span>
+        </button>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            <div>
+                <strong>PORTAL ONLINE</strong>
+                <small>All systems operational</small>
+            </div>
+
+        </div>
+
+        <div class="version">
+            NID PORTAL v0.1
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- ========================================
+     MAIN
+======================================== -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div>
+
+            <div class="breadcrumb">
+                NIDMEGENT / <span id="breadcrumb">HOME</span>
+            </div>
+
+            <h1 id="page-title">
+                Dashboard
+            </h1>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+            <button class="notification-button">
+                🔔
+                <span></span>
+            </button>
+
+            <div class="user-menu">
+
+                <div class="avatar small">
+                    H
+                </div>
+
+                <div>
+                    <strong>湖夢はな</strong>
+                    <small>NID-0001</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ========================================
+         PAGE CONTENT
+    ======================================== -->
+
+    <div class="content">
+
+
+        <!-- ================= HOME ================= -->
+
+        <section class="page active" id="page-home">
+
+            <div class="welcome">
+
+                <div>
+
+                    <span class="eyebrow">
+                        NIDMEGENT INTERNAL PORTAL
+                    </span>
+
+                    <h2>
+                        Good morning,<br>
+                        <span>湖夢はな.</span>
+                    </h2>
+
+                    <p>
+                        今日もNidmegentの活動を進めていきましょう。
+                    </p>
+
+                </div>
+
+                <div class="welcome-id">
+                    <span>NID ID</span>
+                    <strong>NID-0001</strong>
+                </div>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ✓
+                    </div>
+
+                    <div>
+                        <span>MY TASKS</span>
+                        <strong>3</strong>
+                        <small>未完了タスク</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ◷
+                    </div>
+
+                    <div>
+                        <span>EVENTS</span>
+                        <strong>2</strong>
+                        <small>今週の予定</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ◎
+                    </div>
+
+                    <div>
+                        <span>MEMBERS</span>
+                        <strong>24</strong>
+                        <small>Active Members</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ◈
+                    </div>
+
+                    <div>
+                        <span>NEXT MATCH</span>
+                        <strong>03</strong>
+                        <small>days remaining</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+
+                <!-- TODAY -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-label">
+                                SCHEDULE
+                            </span>
+
+                            <h3>
+                                Today's Schedule
+                            </h3>
+                        </div>
+
+                        <button class="text-button">
+                            View All →
+                        </button>
+
+                    </div>
+
+
+                    <div class="schedule">
+
+                        <div class="schedule-item">
+
+                            <div class="time">
+                                19:00
+                            </div>
+
+                            <div class="schedule-line"></div>
+
+                            <div class="schedule-info">
+
+                                <strong>
+                                    VALORANT Practice
+                                </strong>
+
+                                <span>
+                                    LYXEN DIVISION
+                                </span>
+
+                            </div>
+
+                            <span class="schedule-tag game">
+                                GAME
+                            </span>
+
+                        </div>
+
+
+                        <div class="schedule-item">
+
+                            <div class="time">
+                                20:30
+                            </div>
+
+                            <div class="schedule-line"></div>
+
+                            <div class="schedule-info">
+
+                                <strong>
+                                    NID CUSTOM Meeting
+                                </strong>
+
+                                <span>
+                                    Operations
+                                </span>
+
+                            </div>
+
+                            <span class="schedule-tag meeting">
+                                MEETING
+                            </span>
+
+                        </div>
+
+
+                        <div class="schedule-item">
+
+                            <div class="time">
+                                22:00
+                            </div>
+
+                            <div class="schedule-line"></div>
+
+                            <div class="schedule-info">
+
+                                <strong>
+                                    SNS Content Check
+                                </strong>
+
+                                <span>
+                                    Creative Team
+                                </span>
+
+                            </div>
+
+                            <span class="schedule-tag work">
+                                WORK
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOTICE -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-label">
+                                INFORMATION
+                            </span>
+
+                            <h3>
+                                Important Notice
+                            </h3>
+                        </div>
+
+                        <button class="text-button">
+                            View All →
+                        </button>
+
+                    </div>
+
+
+                    <div class="notice-list">
+
+                        <div class="notice-item important">
+
+                            <div class="notice-mark">
+                                !
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    NID CUSTOMについて
+                                </strong>
+
+                                <span>
+                                    9月30日の運営ミーティングについて
+                                </span>
+
+                                <small>
+                                    2 hours ago
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="notice-item">
+
+                            <div class="notice-mark">
+                                i
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    NID STORIES #002
+                                </strong>
+
+                                <span>
+                                    記事公開スケジュールのお知らせ
+                                </span>
+
+                                <small>
+                                    Yesterday
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="notice-item">
+
+                            <div class="notice-mark">
+                                i
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Portal Update
+                                </strong>
+
+                                <span>
+                                    NID PORTAL v0.1を公開しました
+                                </span>
+
+                                <small>
+                                    Sep 27
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TASK -->
+
+            <div class="panel task-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="panel-label">
+                            WORK MANAGEMENT
+                        </span>
+
+                        <h3>
+                            My Tasks
+                        </h3>
+                    </div>
+
+                    <button class="text-button">
+                        View All →
+                    </button>
+
+                </div>
+
+
+                <div class="task-list">
+
+                    <div class="task-row">
+
+                        <div class="task-check"></div>
+
+                        <div class="task-main">
+
+                            <strong>
+                                NID CUSTOM バナー制作
+                            </strong>
+
+                            <span>
+                                DESIGN / NID CUSTOM
+                            </span>
+
+                        </div>
+
+                        <span class="priority high">
+                            HIGH
+                        </span>
+
+                        <span class="task-date">
+                            Sep 30
+                        </span>
+
+                    </div>
+
+
+                    <div class="task-row">
+
+                        <div class="task-check"></div>
+
+                        <div class="task-main">
+
+                            <strong>
+                                NID STORIES #002 サムネイル
+                            </strong>
+
+                            <span>
+                                DESIGN / NID STORIES
+                            </span>
+
+                        </div>
+
+                        <span class="priority normal">
+                            NORMAL
+                        </span>
+
+                        <span class="task-date">
+                            Oct 01
+                        </span>
+
+                    </div>
+
+
+                    <div class="task-row">
+
+                        <div class="task-check completed"></div>
+
+                        <div class="task-main completed-text">
+
+                            <strong>
+                                Fan Letter Page 公開
+                            </strong>
+
+                            <span>
+                                WEB / WEBSITE
+                            </span>
+
+                        </div>
+
+                        <span class="priority done">
+                            DONE
+                        </span>
+
+                        <span class="task-date">
+                            Sep 28
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= NOTICE ================= -->
+
+        <section class="page" id="page-notice">
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    INFORMATION
+                </span>
+
+                <h2>
+                    Notice
+                </h2>
+
+                <p>
+                    Nidmegent内部のお知らせを確認できます。
+                </p>
+
+            </div>
+
+
+            <div class="large-list">
+
+                <div class="notice-card important">
+
+                    <div class="notice-card-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <span class="notice-category">
+                            IMPORTANT
+                        </span>
+
+                        <h3>
+                            NID CUSTOMについて
+                        </h3>
+
+                        <p>
+                            9月30日の運営ミーティングについてのお知らせです。
+                        </p>
+
+                        <small>
+                            2026.09.28 / Operations
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notice-card">
+
+                    <div class="notice-card-icon">
+                        i
+                    </div>
+
+                    <div>
+
+                        <span class="notice-category">
+                            INFORMATION
+                        </span>
+
+                        <h3>
+                            NID STORIES #002
+                        </h3>
+
+                        <p>
+                            記事公開スケジュールが更新されました。
+                        </p>
+
+                        <small>
+                            2026.09.27 / Creative
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= TASK ================= -->
+
+        <section class="page" id="page-task">
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    WORK MANAGEMENT
+                </span>
+
+                <h2>
+                    Tasks
+                </h2>
+
+                <p>
+                    自分に割り当てられたタスクを管理します。
+                </p>
+
+            </div>
+
+
+            <div class="task-board">
+
+                <div class="task-column">
+
+                    <div class="column-title">
+                        <span></span>
+                        TODO
+                        <b>2</b>
+                    </div>
+
+                    <div class="kanban-card">
+
+                        <span class="kanban-category">
+                            DESIGN
+                        </span>
+
+                        <h3>
+                            NID CUSTOM バナー制作
+                        </h3>
+
+                        <p>
+                            X告知用バナー 1600×900
+                        </p>
+
+                        <div class="kanban-footer">
+                            <span>Sep 30</span>
+                            <div class="mini-avatar">H</div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="kanban-card">
+
+                        <span class="kanban-category">
+                            WEB
+                        </span>
+
+                        <h3>
+                            Portal Member Page
+                        </h3>
+
+                        <p>
+                            メンバー一覧ページの作成
+                        </p>
+
+                        <div class="kanban-footer">
+                            <span>Oct 02</span>
+                            <div class="mini-avatar">H</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="task-column">
+
+                    <div class="column-title">
+                        <span></span>
+                        IN PROGRESS
+                        <b>1</b>
+                    </div>
+
+                    <div class="kanban-card">
+
+                        <span class="kanban-category">
+                            STORY
+                        </span>
+
+                        <h3>
+                            NID STORIES #002
+                        </h3>
+
+                        <p>
+                            記事ページ制作
+                        </p>
+
+                        <div class="kanban-footer">
+                            <span>Oct 01</span>
+                            <div class="mini-avatar">H</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="task-column">
+
+                    <div class="column-title">
+                        <span></span>
+                        DONE
+                        <b>1</b>
+                    </div>
+
+                    <div class="kanban-card done-card">
+
+                        <span class="kanban-category">
+                            WEB
+                        </span>
+
+                        <h3>
+                            Fan Letter Page
+                        </h3>
+
+                        <p>
+                            公開完了
+                        </p>
+
+                        <div class="kanban-footer">
+                            <span>Sep 28</span>
+                            <div class="mini-avatar">H</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= EVENT ================= -->
+
+        <section class="page" id="page-event">
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    SCHEDULE
+                </span>
+
+                <h2>
+                    Events
+                </h2>
+
+                <p>
+                    チーム内の予定を確認できます。
+                </p>
+
+            </div>
+
+
+            <div class="event-list">
+
+                <div class="event-card">
+
+                    <div class="event-date">
+                        <strong>30</strong>
+                        <span>SEP</span>
+                    </div>
+
+                    <div class="event-info">
+
+                        <span class="event-type">
+                            MEETING
+                        </span>
+
+                        <h3>
+                            NID CUSTOM Operations Meeting
+                        </h3>
+
+                        <p>
+                            20:30 - Discord / Operations
+                        </p>
+
+                    </div>
+
+                    <span class="event-status">
+                        UPCOMING
+                    </span>
+
+                </div>
+
+
+                <div class="event-card">
+
+                    <div class="event-date">
+                        <strong>03</strong>
+                        <span>OCT</span>
+                    </div>
+
+                    <div class="event-info">
+
+                        <span class="event-type game">
+                            MATCH
+                        </span>
+
+                        <h3>
+                            LYXEN DIVISION Match
+                        </h3>
+
+                        <p>
+                            21:00 - VALORANT
+                        </p>
+
+                    </div>
+
+                    <span class="event-status">
+                        UPCOMING
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= MEMBER ================= -->
+
+        <section class="page" id="page-member">
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    ORGANIZATION
+                </span>
+
+                <h2>
+                    Members
+                </h2>
+
+                <p>
+                    Nidmegentの内部メンバーを確認できます。
+                </p>
+
+            </div>
+
+
+            <div class="member-grid">
+
+                <div class="member-card">
+
+                    <div class="member-avatar">
+                        H
+                    </div>
+
+                    <div>
+
+                        <span class="member-id">
+                            NID-0001
+                        </span>
+
+                        <h3>
+                            湖夢はな
+                        </h3>
+
+                        <p>
+                            STAFF / CREATIVE
+                        </p>
+
+                    </div>
+
+                    <div class="member-skills">
+                        <span>WEB</span>
+                        <span>DESIGN</span>
+                        <span>VIDEO</span>
+                    </div>
+
+                </div>
+
+
+                <div class="member-card">
+
+                    <div class="member-avatar">
+                        N
+                    </div>
+
+                    <div>
+
+                        <span class="member-id">
+                            NID-0002
+                        </span>
+
+                        <h3>
+                            Member Name
+                        </h3>
+
+                        <p>
+                            PLAYER / VALORANT
+                        </p>
+
+                    </div>
+
+                    <div class="member-skills">
+                        <span>VALORANT</span>
+                        <span>STREAM</span>
+                    </div>
+
+                </div>
+
+
+                <div class="member-card">
+
+                    <div class="member-avatar">
+                        C
+                    </div>
+
+                    <div>
+
+                        <span class="member-id">
+                            NID-0003
+                        </span>
+
+                        <h3>
+                            Creator
+                        </h3>
+
+                        <p>
+                            CREATOR / DESIGN
+                        </p>
+
+                    </div>
+
+                    <div class="member-skills">
+                        <span>DESIGN</span>
+                        <span>ILLUST</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= WIKI ================= -->
+
+        <section class="page" id="page-wiki">
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    KNOWLEDGE BASE
+                </span>
+
+                <h2>
+                    NID Wiki
+                </h2>
+
+                <p>
+                    Nidmegent内部の情報・ルール・マニュアルをまとめています。
+                </p>
+
+            </div>
+
+
+            <div class="wiki-grid">
+
+                <div class="wiki-card">
+                    <span>01</span>
+                    <h3>ABOUT NIDMEGENT</h3>
+                    <p>チームについて</p>
+                </div>
+
+                <div class="wiki-card">
+                    <span>02</span>
+                    <h3>TEAM RULES</h3>
+                    <p>チームルール</p>
+                </div>
+
+                <div class="wiki-card">
+                    <span>03</span>
+                    <h3>STAFF GUIDE</h3>
+                    <p>スタッフ向けガイド</p>
+                </div>
+
+                <div class="wiki-card">
+                    <span>04</span>
+                    <h3>SNS GUIDE</h3>
+                    <p>SNS運用ガイド</p>
+                </div>
+
+                <div class="wiki-card">
+                    <span>05</span>
+                    <h3>DESIGN GUIDE</h3>
+                    <p>デザインガイドライン</p>
+                </div>
+
+                <div class="wiki-card">
+                    <span>06</span>
+                    <h3>NEW MEMBER</h3>
+                    <p>新メンバー向け</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= MATCH ================= -->
+
+        <section class="page" id="page-match">
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    COMPETITIVE
+                </span>
+
+                <h2>
+                    Match Center
+                </h2>
+
+                <p>
+                    試合・大会・戦術情報を管理します。
+                </p>
+
+            </div>
+
+
+            <div class="match-hero">
+
+                <span>
+                    NEXT MATCH
+                </span>
+
+                <div class="match-teams">
+
+                    <div>
+                        <strong>NIDMEGENT</strong>
+                        <small>LYXEN DIVISION</small>
+                    </div>
+
+                    <b>
+                        VS
+                    </b>
+
+                    <div>
+                        <strong>XXXXX</strong>
+                        <small>OPPONENT</small>
+                    </div>
+
+                </div>
+
+                <div class="match-info">
+                    2026.10.03 / 21:00 / VALORANT
+                </div>
+
+            </div>
+
+
+            <div class="match-tools">
+
+                <div>
+                    <strong>STRATEGY</strong>
+                    <span>戦術データベース</span>
+                </div>
+
+                <div>
+                    <strong>VOD</strong>
+                    <span>試合映像</span>
+                </div>
+
+                <div>
+                    <strong>REVIEW</strong>
+                    <span>試合振り返り</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section class="page" id="page-settings">
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    SYSTEM
+                </span>
+
+                <h2>
+                    Settings
+                </h2>
+
+                <p>
+                    アカウント・ポータル設定。
+                </p>
+
+            </div>
+
+
+            <div class="settings-panel">
+
+                <div class="setting-row">
+
+                    <div>
+                        <strong>Account</strong>
+                        <span>NID-0001 / 湖夢はな</span>
+                    </div>
+
+                    <button>
+                        Edit
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+                        <strong>Notifications</strong>
+                        <span>Portal notifications enabled</span>
+                    </div>
+
+                    <button>
+                        Manage
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+                        <strong>Theme</strong>
+                        <span>Dark / NID Default</span>
+                    </div>
+
+                    <button>
+                        Change
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
