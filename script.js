@@ -1,356 +1,59 @@
-/* ==================================================
+/* ========================================
    NID PORTAL
-   GitHub Pages Authentication
-================================================== */
+   Authentication
+======================================== */
 
+const loginScreen = document.getElementById("login-screen");
+const portal = document.getElementById("portal");
 
-/* ==================================================
-   GLOBAL
-================================================== */
+const loginForm = document.getElementById("login-form");
+const loginError = document.getElementById("login-error");
+
+const nidInput = document.getElementById("nid-id");
+const passwordInput = document.getElementById("password");
 
 let currentUser = null;
 
 
-/* ==================================================
-   PASSWORD HASH
-================================================== */
-
-async function hashPassword(password) {
-
-    const encoder = new TextEncoder();
-
-    const data = encoder.encode(password);
-
-    const hashBuffer =
-        await crypto.subtle.digest(
-            "SHA-256",
-            data
-        );
-
-    const hashArray =
-        Array.from(
-            new Uint8Array(hashBuffer)
-        );
-
-    return hashArray
-        .map(
-            byte =>
-                byte
-                    .toString(16)
-                    .padStart(2, "0")
-        )
-        .join("");
-}
-
-
-/* ==================================================
+/* ========================================
    LOGIN
-================================================== */
+======================================== */
 
-const loginForm =
-    document.getElementById("login-form");
+loginForm.addEventListener("submit", function (event) {
 
-const loginScreen =
-    document.getElementById("login-screen");
+    event.preventDefault();
 
-const portal =
-    document.getElementById("portal");
+    const nidId =
+        nidInput.value
+            .trim()
+            .toUpperCase();
 
-const loginError =
-    document.getElementById("login-error");
+    const password =
+        passwordInput.value;
 
+    loginError.textContent = "";
 
-loginForm.addEventListener(
-    "submit",
-    async function (event) {
 
-        event.preventDefault();
+    const user = NID_USERS.find(
+        item =>
+            item.nid_id.toUpperCase() === nidId &&
+            item.password === password
+    );
 
-        const id =
-            document
-                .getElementById("login-id")
-                .value
-                .trim()
-                .toUpperCase();
 
-        const password =
-            document
-                .getElementById("login-password")
-                .value;
+    if (!user) {
 
-        loginError.textContent = "";
-
-
-        if (!id || !password) {
-
-            loginError.textContent =
-                "NID IDとパスワードを入力してください。";
-
-            return;
-        }
-
-
-        const user =
-            NID_USERS.find(
-                item =>
-                    item.id.toUpperCase() === id
-            );
-
-
-        if (!user) {
-
-            loginError.textContent =
-                "NID IDまたはパスワードが正しくありません。";
-
-            return;
-        }
-
-
-        if (user.status !== "ACTIVE") {
-
-            loginError.textContent =
-                "このアカウントは現在利用できません。";
-
-            return;
-        }
-
-
-        const passwordHash =
-            await hashPassword(password);
-
-
-        if (
-            passwordHash !==
-            user.passwordHash
-        ) {
-
-            loginError.textContent =
-                "NID IDまたはパスワードが正しくありません。";
-
-            return;
-        }
-
-
-        /* ログイン成功 */
-
-        currentUser = user;
-
-
-        localStorage.setItem(
-            "nid_portal_user",
-            user.id
-        );
-
-
-        showPortal(user);
-
-    }
-);
-
-
-/* ==================================================
-   SHOW PORTAL
-================================================== */
-
-function showPortal(user) {
-
-    loginScreen.classList.add("hidden");
-
-    portal.classList.remove("hidden");
-
-    updateUserUI(user);
-
-}
-
-
-/* ==================================================
-   USER UI
-================================================== */
-
-function updateUserUI(user) {
-
-    const sidebarName =
-        document.getElementById(
-            "sidebar-name"
-        );
-
-    const sidebarRole =
-        document.getElementById(
-            "sidebar-role"
-        );
-
-    const sidebarAvatar =
-        document.getElementById(
-            "sidebar-avatar"
-        );
-
-    const topbarName =
-        document.getElementById(
-            "topbar-name"
-        );
-
-    const welcomeName =
-        document.getElementById(
-            "welcome-name"
-        );
-
-    const memberSelfName =
-        document.getElementById(
-            "member-self-name"
-        );
-
-
-    const settingsId =
-        document.getElementById(
-            "settings-id"
-        );
-
-    const settingsName =
-        document.getElementById(
-            "settings-name"
-        );
-
-    const settingsRole =
-        document.getElementById(
-            "settings-role"
-        );
-
-    const settingsDepartment =
-        document.getElementById(
-            "settings-department"
-        );
-
-
-    if (sidebarName) {
-
-        sidebarName.textContent =
-            user.name;
-
-    }
-
-
-    if (sidebarRole) {
-
-        sidebarRole.textContent =
-            user.role;
-
-    }
-
-
-    if (sidebarAvatar) {
-
-        sidebarAvatar.textContent =
-            user.name
-                .charAt(0)
-                .toUpperCase();
-
-    }
-
-
-    if (topbarName) {
-
-        topbarName.textContent =
-            user.name;
-
-    }
-
-
-    if (welcomeName) {
-
-        welcomeName.textContent =
-            user.name;
-
-    }
-
-
-    if (memberSelfName) {
-
-        memberSelfName.textContent =
-            user.name;
-
-    }
-
-
-    if (settingsId) {
-
-        settingsId.textContent =
-            user.id;
-
-    }
-
-
-    if (settingsName) {
-
-        settingsName.textContent =
-            user.name;
-
-    }
-
-
-    if (settingsRole) {
-
-        settingsRole.textContent =
-            user.role;
-
-    }
-
-
-    if (settingsDepartment) {
-
-        settingsDepartment.textContent =
-            user.department;
-
-    }
-
-}
-
-
-/* ==================================================
-   SESSION CHECK
-================================================== */
-
-function checkSession() {
-
-    const savedUserId =
-        localStorage.getItem(
-            "nid_portal_user"
-        );
-
-
-    if (!savedUserId) {
-
-        loginScreen.classList.remove(
-            "hidden"
-        );
-
-        portal.classList.add(
-            "hidden"
-        );
+        loginError.textContent =
+            "NID IDまたはパスワードが正しくありません。";
 
         return;
     }
 
 
-    const user =
-        NID_USERS.find(
-            item =>
-                item.id === savedUserId
-        );
+    if (user.status !== "ACTIVE") {
 
-
-    if (!user || user.status !== "ACTIVE") {
-
-        localStorage.removeItem(
-            "nid_portal_user"
-        );
-
-        loginScreen.classList.remove(
-            "hidden"
-        );
-
-        portal.classList.add(
-            "hidden"
-        );
+        loginError.textContent =
+            "このアカウントは現在利用できません。";
 
         return;
     }
@@ -358,49 +61,210 @@ function checkSession() {
 
     currentUser = user;
 
+
+    sessionStorage.setItem(
+        "nid_current_user",
+        JSON.stringify(user)
+    );
+
+
     showPortal(user);
 
+});
+
+
+/* ========================================
+   SHOW PORTAL
+======================================== */
+
+function showPortal(user) {
+
+    loginScreen.classList.add("hidden");
+
+    portal.classList.remove("hidden");
+
+    updateUserInformation(user);
+
 }
 
 
-/* ==================================================
-   LOGOUT
-================================================== */
+/* ========================================
+   USER INFORMATION
+======================================== */
 
-const logoutButton =
-    document.getElementById(
-        "logout-button"
-    );
+function updateUserInformation(user) {
+
+    const elements = {
+
+        userName:
+            document.getElementById("user-name"),
+
+        userRole:
+            document.getElementById("user-role"),
+
+        headerUser:
+            document.getElementById("header-user"),
+
+        headerRole:
+            document.getElementById("header-role"),
+
+        welcomeName:
+            document.getElementById("welcome-name"),
+
+        welcomeId:
+            document.getElementById("welcome-id"),
+
+        statRole:
+            document.getElementById("stat-role"),
+
+        memberName:
+            document.getElementById("member-name"),
+
+        memberRole:
+            document.getElementById("member-role"),
+
+        settingId:
+            document.getElementById("setting-id"),
+
+        settingName:
+            document.getElementById("setting-name"),
+
+        settingRole:
+            document.getElementById("setting-role")
+
+    };
 
 
-if (logoutButton) {
+    elements.userName.textContent =
+        user.display_name;
 
-    logoutButton.addEventListener(
-        "click",
-        function () {
+    elements.userRole.textContent =
+        user.role;
 
-            currentUser = null;
+    elements.headerUser.textContent =
+        user.display_name;
 
-            localStorage.removeItem(
-                "nid_portal_user"
+    elements.headerRole.textContent =
+        user.role;
+
+    elements.welcomeName.textContent =
+        user.display_name;
+
+    elements.welcomeId.textContent =
+        user.nid_id;
+
+    elements.statRole.textContent =
+        user.role;
+
+    elements.memberName.textContent =
+        user.display_name;
+
+    elements.memberRole.textContent =
+        user.role;
+
+    elements.settingId.textContent =
+        user.nid_id;
+
+    elements.settingName.textContent =
+        user.display_name;
+
+    elements.settingRole.textContent =
+        user.role;
+
+}
+
+
+/* ========================================
+   SESSION CHECK
+======================================== */
+
+function checkSession() {
+
+    const savedUser =
+        sessionStorage.getItem(
+            "nid_current_user"
+        );
+
+
+    if (!savedUser) {
+
+        loginScreen.classList.remove("hidden");
+
+        portal.classList.add("hidden");
+
+        return;
+    }
+
+
+    try {
+
+        const user =
+            JSON.parse(savedUser);
+
+
+        const validUser =
+            NID_USERS.find(
+                item =>
+                    item.nid_id === user.nid_id
             );
 
-            location.reload();
 
+        if (!validUser) {
+
+            sessionStorage.removeItem(
+                "nid_current_user"
+            );
+
+            return;
         }
-    );
+
+
+        currentUser = validUser;
+
+        showPortal(validUser);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        sessionStorage.removeItem(
+            "nid_current_user"
+        );
+
+    }
 
 }
 
 
-/* ==================================================
-   PASSWORD TOGGLE
-================================================== */
+/* ========================================
+   LOGOUT
+======================================== */
 
-const passwordInput =
-    document.getElementById(
-        "login-password"
-    );
+const logoutButton =
+    document.getElementById("logout-button");
+
+
+logoutButton.addEventListener(
+    "click",
+    function () {
+
+        sessionStorage.removeItem(
+            "nid_current_user"
+        );
+
+        currentUser = null;
+
+        location.reload();
+
+    }
+);
+
+
+/* ========================================
+   PASSWORD TOGGLE
+======================================== */
 
 const togglePassword =
     document.getElementById(
@@ -408,45 +272,38 @@ const togglePassword =
     );
 
 
-if (
-    passwordInput &&
-    togglePassword
-) {
+togglePassword.addEventListener(
+    "click",
+    function () {
 
-    togglePassword.addEventListener(
-        "click",
-        function () {
+        if (
+            passwordInput.type ===
+            "password"
+        ) {
 
-            if (
-                passwordInput.type ===
-                "password"
-            ) {
+            passwordInput.type =
+                "text";
 
-                passwordInput.type =
-                    "text";
+            togglePassword.textContent =
+                "○";
 
-                togglePassword.textContent =
-                    "○";
+        } else {
 
-            } else {
+            passwordInput.type =
+                "password";
 
-                passwordInput.type =
-                    "password";
-
-                togglePassword.textContent =
-                    "◉";
-
-            }
+            togglePassword.textContent =
+                "◉";
 
         }
-    );
 
-}
+    }
+);
 
 
-/* ==================================================
-   PAGE NAVIGATION
-================================================== */
+/* ========================================
+   NAVIGATION
+======================================== */
 
 const navItems =
     document.querySelectorAll(
@@ -458,149 +315,64 @@ const pages =
         ".page"
     );
 
-
-function showPage(pageName) {
-
-    pages.forEach(
-        page => {
-
-            page.classList.remove(
-                "active-page"
-            );
-
-        }
+const pageTitle =
+    document.getElementById(
+        "page-title"
     );
-
-
-    const target =
-        document.getElementById(
-            `page-${pageName}`
-        );
-
-
-    if (target) {
-
-        target.classList.add(
-            "active-page"
-        );
-
-    }
-
-
-    navItems.forEach(
-        item => {
-
-            item.classList.remove(
-                "active"
-            );
-
-
-            if (
-                item.dataset.page ===
-                pageName
-            ) {
-
-                item.classList.add(
-                    "active"
-                );
-
-            }
-
-        }
-    );
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
 
 
 navItems.forEach(
-    item => {
+    function (item) {
 
         item.addEventListener(
             "click",
             function () {
 
-                showPage(
-                    item.dataset.page
+                const target =
+                    item.dataset.page;
+
+
+                navItems.forEach(
+                    nav =>
+                        nav.classList.remove(
+                            "active"
+                        )
                 );
 
-            }
-        );
 
-    }
-);
-
-
-/* ==================================================
-   INTERNAL PAGE LINKS
-================================================== */
-
-const pageLinks =
-    document.querySelectorAll(
-        "[data-page-link]"
-    );
-
-
-pageLinks.forEach(
-    button => {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                showPage(
-                    button.dataset.pageLink
+                pages.forEach(
+                    page =>
+                        page.classList.remove(
+                            "active"
+                        )
                 );
 
-            }
-        );
 
-    }
-);
-
-
-/* ==================================================
-   TASK CHECK
-================================================== */
-
-const taskChecks =
-    document.querySelectorAll(
-        ".task-check"
-    );
-
-
-taskChecks.forEach(
-    check => {
-
-        check.addEventListener(
-            "click",
-            function () {
-
-                check.classList.toggle(
-                    "checked"
+                item.classList.add(
+                    "active"
                 );
 
-                if (
-                    check.classList.contains(
-                        "checked"
-                    )
-                ) {
 
-                    check.textContent =
-                        "✓";
+                const targetPage =
+                    document.getElementById(
+                        "page-" + target
+                    );
 
-                } else {
 
-                    check.textContent =
-                        "";
+                if (targetPage) {
+
+                    targetPage.classList.add(
+                        "active"
+                    );
 
                 }
 
+
+                pageTitle.textContent =
+                    target === "match"
+                        ? "MATCH CENTER"
+                        : target.toUpperCase();
+
             }
         );
 
@@ -608,32 +380,8 @@ taskChecks.forEach(
 );
 
 
-/* ==================================================
-   PASSWORD HASH GENERATOR
-==================================================
-
-   開発者向け。ブラウザのコンソールで、generatePasswordHash("あなたのパスワード")と入力すると、users.js に貼り付けるハッシュを生成できます。
-
-================================================== */
-
-window.generatePasswordHash =
-    async function(password) {
-
-        const hash =
-            await hashPassword(password);
-
-        console.log(
-            "PASSWORD HASH:"
-        );
-
-        console.log(hash);
-
-        return hash;
-    };
-
-
-/* ==================================================
+/* ========================================
    START
-================================================== */
+======================================== */
 
 checkSession();
