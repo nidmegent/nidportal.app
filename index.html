@@ -1217,6 +1217,110 @@
 
 </div>
 
+<!-- =========================
+     TASK MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="task-modal"
+>
+
+    <div class="modal-background"></div>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    TASK MANAGEMENT
+                </span>
+
+                <h3>
+                    ADD TASK
+                </h3>
+
+            </div>
+
+            <button
+                class="modal-close"
+                data-close="task-modal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="task-form">
+
+            <div class="input-group">
+
+                <label>TASK NAME</label>
+
+                <input
+                    type="text"
+                    id="task-title"
+                    placeholder="タスク名"
+                    required
+                >
+
+            </div>
+
+
+            <div class="modal-grid">
+
+                <div class="input-group">
+
+                    <label>ASSIGNEE</label>
+
+                    <select id="task-assignee">
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>PRIORITY</label>
+
+                    <select id="task-priority">
+
+                        <option value="LOW">
+                            LOW
+                        </option>
+
+                        <option value="NORMAL">
+                            NORMAL
+                        </option>
+
+                        <option value="HIGH">
+                            HIGH
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="modal-submit"
+            >
+                CREATE TASK
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+        
+
     </main>
 
 </div>
