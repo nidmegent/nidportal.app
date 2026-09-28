@@ -186,12 +186,20 @@
             </button>
 
             <button
-                class="nav-item"
-                data-page="settings"
-            >
-                <span>⚙</span>
-                SETTINGS
-            </button>
+    class="nav-item"
+    data-page="settings"
+>
+    <span>⚙</span>
+    SETTINGS
+</button>
+
+<button
+    class="nav-item admin-only"
+    data-page="admin"
+>
+    <span>◆</span>
+    ADMIN
+</button>
 
         </nav>
 
@@ -837,6 +845,377 @@
             </div>
 
         </section>
+
+        <!-- =========================
+     ADMIN
+========================= -->
+
+<section
+    class="page"
+    id="page-admin"
+>
+
+    <div class="page-heading">
+
+        <span class="eyebrow">
+            SYSTEM MANAGEMENT
+        </span>
+
+        <h2>ADMIN PANEL</h2>
+
+    </div>
+
+
+    <!-- MEMBER MANAGEMENT -->
+
+    <div class="admin-section">
+
+        <div class="admin-section-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    USER MANAGEMENT
+                </span>
+
+                <h3>
+                    MEMBER MANAGEMENT
+                </h3>
+
+            </div>
+
+            <button
+                class="admin-add-button"
+                id="open-member-modal"
+            >
+                + ADD MEMBER
+            </button>
+
+        </div>
+
+
+        <div
+            class="admin-member-list"
+            id="admin-member-list"
+        ></div>
+
+    </div>
+
+
+    <!-- NOTICE MANAGEMENT -->
+
+    <div class="admin-section">
+
+        <div class="admin-section-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    INFORMATION
+                </span>
+
+                <h3>
+                    NOTICE MANAGEMENT
+                </h3>
+
+            </div>
+
+            <button
+                class="admin-add-button"
+                id="open-notice-modal"
+            >
+                + ADD NOTICE
+            </button>
+
+        </div>
+
+
+        <div
+            class="admin-notice-list"
+            id="admin-notice-list"
+        ></div>
+
+    </div>
+
+
+    <!-- TASK MANAGEMENT -->
+
+    <div class="admin-section">
+
+        <div class="admin-section-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    MANAGEMENT
+                </span>
+
+                <h3>
+                    TASK MANAGEMENT
+                </h3>
+
+            </div>
+
+            <button
+                class="admin-add-button"
+                id="open-task-modal"
+            >
+                + ADD TASK
+            </button>
+
+        </div>
+
+
+        <div
+            class="admin-task-list"
+            id="admin-task-list"
+        ></div>
+
+    </div>
+
+</section>
+
+ <!-- =========================
+     MEMBER MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="member-modal"
+>
+
+    <div class="modal-background"></div>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    USER MANAGEMENT
+                </span>
+
+                <h3>
+                    ADD MEMBER
+                </h3>
+
+            </div>
+
+            <button
+                class="modal-close"
+                data-close="member-modal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="member-form">
+
+            <div class="modal-grid">
+
+                <div class="input-group">
+
+                    <label>NID ID</label>
+
+                    <input
+                        type="text"
+                        id="new-nid-id"
+                        placeholder="NID-0004"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>DISPLAY NAME</label>
+
+                    <input
+                        type="text"
+                        id="new-display-name"
+                        placeholder="メンバー名"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>INITIAL PASSWORD</label>
+
+                    <input
+                        type="text"
+                        id="new-password"
+                        placeholder="InitialPass123"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>DEPARTMENT</label>
+
+                    <input
+                        type="text"
+                        id="new-department"
+                        placeholder="VALORANT"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>ROLE</label>
+
+                    <select id="new-role">
+
+                        <option value="STAFF">
+                            STAFF
+                        </option>
+
+                        <option value="PLAYER">
+                            PLAYER
+                        </option>
+
+                        <option value="CREATOR">
+                            CREATOR
+                        </option>
+
+                        <option value="ADMIN">
+                            ADMIN
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>STATUS</label>
+
+                    <select id="new-status">
+
+                        <option value="ACTIVE">
+                            ACTIVE
+                        </option>
+
+                        <option value="INACTIVE">
+                            INACTIVE
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="modal-error"
+                id="member-error"
+            ></div>
+
+
+            <button
+                type="submit"
+                class="modal-submit"
+            >
+                CREATE MEMBER
+            </button>
+
+        </form>
+
+    </div>
+
+</div>       
+
+<!-- =========================
+     NOTICE MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="notice-modal"
+>
+
+    <div class="modal-background"></div>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    INFORMATION
+                </span>
+
+                <h3>
+                    ADD NOTICE
+                </h3>
+
+            </div>
+
+            <button
+                class="modal-close"
+                data-close="notice-modal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="notice-form">
+
+            <div class="input-group">
+
+                <label>TITLE</label>
+
+                <input
+                    type="text"
+                    id="notice-title"
+                    placeholder="お知らせタイトル"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>CONTENT</label>
+
+                <textarea
+                    id="notice-content"
+                    placeholder="お知らせ内容"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="modal-submit"
+            >
+                CREATE NOTICE
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
 
     </main>
 
