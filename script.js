@@ -72,6 +72,261 @@ loginForm.addEventListener("submit", function (event) {
 
 });
 
+/* ========================================
+   ADMIN MEMBER MANAGEMENT
+======================================== */
+
+function renderAdminMembers() {
+
+    const list =
+        document.getElementById(
+            "admin-member-list"
+        );
+
+    if (!list) return;
+
+
+    list.innerHTML = "";
+
+
+    NID_USERS.forEach((user, index) => {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "admin-member-row";
+
+
+        item.innerHTML = `
+
+            <div class="admin-member-main">
+
+                <div class="admin-member-avatar">
+                    ${user.display_name.charAt(0)}
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${user.display_name}
+                    </strong>
+
+                    <span>
+                        ${user.nid_id}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-member-meta">
+
+                <span class="admin-role">
+                    ${user.role}
+                </span>
+
+                <span class="admin-status ${user.status === "ACTIVE" ? "active" : "inactive"}">
+                    ${user.status}
+                </span>
+
+                <button
+                    class="admin-delete-button"
+                    onclick="deleteMember(${index})"
+                >
+                    DELETE
+                </button>
+
+            </div>
+
+        `;
+
+
+        list.appendChild(item);
+
+    });
+
+}
+
+function deleteMember(index) {
+
+    const user =
+        NID_USERS[index];
+
+
+    if (!user) return;
+
+
+    if (
+        user.nid_id ===
+        currentUser.nid_id
+    ) {
+
+        alert(
+            "自分自身のアカウントは削除できません。"
+        );
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            `${user.display_name} を削除しますか？`
+        );
+
+
+    if (!confirmed) return;
+
+
+    NID_USERS.splice(
+        index,
+        1
+    );
+
+
+    saveUsers();
+
+    renderAdminMembers();
+
+    updateTaskAssignees();
+
+}
+
+/* ========================================
+   CREATE MEMBER
+======================================== */
+
+const memberForm =
+    document.getElementById(
+        "member-form"
+    );
+
+
+memberForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+
+        const nidId =
+            document.getElementById(
+                "new-nid-id"
+            )
+            .value
+            .trim()
+            .toUpperCase();
+
+
+        const password =
+            document.getElementById(
+                "new-password"
+            )
+            .value;
+
+
+        const displayName =
+            document.getElementById(
+                "new-display-name"
+            )
+            .value
+            .trim();
+
+
+        const department =
+            document.getElementById(
+                "new-department"
+            )
+            .value
+            .trim();
+
+
+        const role =
+            document.getElementById(
+                "new-role"
+            )
+            .value;
+
+
+        const status =
+            document.getElementById(
+                "new-status"
+            )
+            .value;
+
+
+        const error =
+            document.getElementById(
+                "member-error"
+            );
+
+
+        error.textContent = "";
+
+
+        const exists =
+            NID_USERS.some(
+                user =>
+                    user.nid_id === nidId
+            );
+
+
+        if (exists) {
+
+            error.textContent =
+                "そのNID IDはすでに使用されています。";
+
+            return;
+
+        }
+
+
+        NID_USERS.push({
+
+            nid_id:
+                nidId,
+
+            password:
+                password,
+
+            display_name:
+                displayName,
+
+            role:
+                role,
+
+            department:
+                department,
+
+            status:
+                status
+
+        });
+
+
+        saveUsers();
+
+        renderAdminMembers();
+
+        updateTaskAssignees();
+
+
+        memberForm.reset();
+
+        closeModal(
+            "member-modal"
+        );
+
+
+        alert(
+            "メンバーを作成しました。"
+        );
+
+    }
+);
 
 /* ========================================
    SHOW PORTAL
@@ -84,6 +339,8 @@ function showPortal(user) {
     portal.classList.remove("hidden");
 
     updateUserInformation(user);
+
+    checkAdminAccess();
 
 }
 
@@ -385,3 +642,46 @@ navItems.forEach(
 ======================================== */
 
 checkSession();
+
+/* ========================================
+   ADMIN PANEL
+======================================== */
+
+const adminItems =
+    document.querySelectorAll(".admin-only");
+
+
+function checkAdminAccess() {
+
+    if (!currentUser) return;
+
+
+    const isAdmin =
+        currentUser.role === "ADMIN";
+
+
+    adminItems.forEach(item => {
+
+        if (isAdmin) {
+
+            item.style.display = "flex";
+
+        } else {
+
+            item.style.display = "none";
+
+        }
+
+    });
+
+
+    if (isAdmin) {
+
+        renderAdminMembers();
+        renderAdminNotices();
+        renderAdminTasks();
+        updateTaskAssignees();
+
+    }
+
+}
